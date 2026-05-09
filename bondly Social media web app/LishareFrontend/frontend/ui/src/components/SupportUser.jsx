@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import Navbar from "./Navbar";
 import {
   Alert,
   Avatar,
@@ -17,7 +17,6 @@ import {
   AccessTime,
   CheckCircle,
   Delete,
-  Home,
   Lock,
   QuestionAnswer,
   Send,
@@ -88,32 +87,9 @@ export default function SupportUser() {
   };
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f7fb", py: { xs: 2, md: 3 } }}>
-      <Container maxWidth="lg">
-        <Paper
-          sx={{
-            p: { xs: 2, md: 2.5 },
-            mb: 2,
-            borderRadius: 1,
-            background: "linear-gradient(135deg, #ffffff 0%, #fff0f6 52%, #eef6ff 100%)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Stack direction="row" alignItems="center" spacing={1.5}>
-            <Avatar sx={{ bgcolor: "#e91e63", width: 54, height: 54 }}>
-              <QuestionAnswer />
-            </Avatar>
-            <Box>
-              <Typography variant="h4" sx={{ color: "#e91e63" }}>My Support</Typography>
-              <Typography color="text.secondary">{questions.length} private conversation{questions.length !== 1 ? "s" : ""}</Typography>
-            </Box>
-          </Stack>
-          <IconButton component={RouterLink} to="/home" sx={{ color: "#2563eb" }}>
-            <Home />
-          </IconButton>
-        </Paper>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f7fb" }}>
+      <Navbar />
+      <Container maxWidth="lg" sx={{ py: { xs: 2, md: 3 } }}>
 
         {error && <Alert severity="error" onClose={() => setError("")} sx={{ mb: 2 }}>{error}</Alert>}
 
