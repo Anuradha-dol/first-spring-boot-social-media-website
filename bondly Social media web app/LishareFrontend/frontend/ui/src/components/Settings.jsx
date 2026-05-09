@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const BASE_URL = "http://localhost:9091"; // your backend
+const BASE_URL = "http://localhost:4041"; // your backend
 
 export default function App() {
   const [user, setUser] = useState({});
