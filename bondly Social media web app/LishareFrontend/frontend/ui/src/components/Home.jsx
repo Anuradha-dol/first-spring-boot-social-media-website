@@ -490,6 +490,15 @@ export default function Home() {
     handleReactionClose();
   };
 
+  const handleClearNotifications = async () => {
+    try {
+      await api.delete("/notifications", { withCredentials: true });
+      setNotifications([]);
+    } catch (err) {
+      console.error("Failed to clear notifications:", err);
+    }
+  };
+
   // --- Share handler ---
   const handleSharePost = async () => {
     if (!sharingPostId) return;
@@ -1068,9 +1077,16 @@ export default function Home() {
                 top: 70,
               }}
             >
-              <Typography variant="h6" fontWeight={600} sx={{ color: "#e91e63", mb: 2 }}>
-                Notifications
-              </Typography>
+              <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                <Typography variant="h6" fontWeight={600} sx={{ color: "#e91e63" }}>
+                  Notifications
+                </Typography>
+                {notifications.length > 0 && (
+                  <Button size="small" onClick={handleClearNotifications} sx={{ textTransform: "none", color: "#666" }}>
+                    Clear All
+                  </Button>
+                )}
+              </Box>
               {notificationsLoading ? (
                 <CircularProgress size={24} sx={{ color: "#2196f3", display: "block", mx: "auto", my: 2 }} />
               ) : notificationsError ? (

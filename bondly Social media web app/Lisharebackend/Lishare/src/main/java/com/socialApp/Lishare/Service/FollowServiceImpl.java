@@ -60,6 +60,10 @@ public class FollowServiceImpl implements FollowService {
                 .orElseThrow(() -> new RuntimeException("Not following this user"));
 
         followRepository.delete(follow);
+        
+        // Remove the follow notification if it exists
+        notificationService.removeNotification(followingId, followerId, "FOLLOW");
+        
         return new FollowActionResponse(true, "Unfollowed successfully");
     }
 

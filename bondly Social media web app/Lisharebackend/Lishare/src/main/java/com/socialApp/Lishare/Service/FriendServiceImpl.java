@@ -91,6 +91,9 @@ public class FriendServiceImpl implements FriendService {
         friend.setStatus(FriendStatus.REJECTED);
         friendRepository.save(friend);
 
+        // Remove the friend request notification
+        notificationService.removeNotification(receiverId, senderId, "FRIEND_REQUEST");
+
         return new FriendActionResponse("Friend request rejected");
     }
 
@@ -104,6 +107,13 @@ public class FriendServiceImpl implements FriendService {
                 .orElseThrow(() -> new RuntimeException("Friendship not found"));
 
         friendRepository.delete(friend);
+        
+        // Remove both FRIEND_ACCEPTED and FRIEND_REQUEST notifications in both directions to be safe
+        notificationService.removeNotification(user1Id, user2Id, "FRIEND_ACCEPTED");
+        notificationService.removeNotification(user2Id, user1Id, "FRIEND_ACCEPTED");
+        notificationService.removeNotification(user1Id, user2Id, "FRIEND_REQUEST");
+        notificationService.removeNotification(user2Id, user1Id, "FRIEND_REQUEST");
+
         return new FriendActionResponse("Unfriended successfully");
     }
 
