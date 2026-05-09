@@ -1082,7 +1082,7 @@ export default function Home() {
               ) : (
                 <List sx={{ p: 0 }}>
                   {notifications.map((notif, index) => (
-                    <React.Fragment key={notif.userId}>
+                    <React.Fragment key={notif.id}>
                       <ListItem
                         alignItems="flex-start"
                         disableGutters
@@ -1124,14 +1124,20 @@ export default function Home() {
                             onClick={() => handleFollowToggle(notif.userId, notif.isFollowing)}
                             disabled={processingIds.includes(notif.userId)}
                             sx={{
-                              minWidth: 70,
+                              minWidth: 90,
+                              textTransform: "none",
+                              fontWeight: 600,
                               ...(notif.isFollowing
-                                ? { borderColor: "#2196f3", color: "#2196f3", "&:hover": { borderColor: "#1976d2", backgroundColor: alpha("#2196f3", 0.08) } }
-                                : { bgcolor: "#e91e63", color: "#fff", "&:hover": { bgcolor: "#c2185b" } }
+                                ? { borderColor: "#dde5f0", color: "#333", bgcolor: "#f1f5f9", "&:hover": { bgcolor: "#e2e8f0", borderColor: "#cbd5e1" } }
+                                : { bgcolor: "#2196f3", color: "#fff", "&:hover": { bgcolor: "#1976d2" } }
                               ),
                             }}
                           >
-                            {notif.isFollowing ? "Unfollow" : "Follow Back"}
+                            {processingIds.includes(notif.userId)
+                              ? "..."
+                              : notif.isFollowing
+                                ? "Following"
+                                : "Follow Back"}
                           </Button>
                         )}
                       </ListItem>
