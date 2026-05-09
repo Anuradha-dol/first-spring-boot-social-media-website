@@ -754,18 +754,18 @@ export default function ProfilePage() {
               height: 210,
               borderRadius: 1,
               mb: 6,
-            backgroundImage: user.coverImageUrl
-      ? `url(${backendBaseUrl + user.coverImageUrl})`
-      : "none",
-    backgroundSize: "cover",
+              backgroundImage: user.coverImageUrl
+                ? `url('${backendBaseUrl}${user.coverImageUrl.startsWith('/') ? '' : '/'}${user.coverImageUrl}')`
+                : "none",
+              backgroundSize: "cover",
               backgroundPosition: "center",
               overflow: "visible",
               border: "1px solid rgba(0,0,0,0.1)",
-              bgcolor: "#fff",
+              bgcolor: "#e2e8f0", // a nice fallback background if no cover photo
             }}
           >
             <Avatar
-              src={user.profileImageUrl ? backendBaseUrl + user.profileImageUrl : undefined}
+              src={user.profileImageUrl ? `${backendBaseUrl}${user.profileImageUrl.startsWith('/') ? '' : '/'}${user.profileImageUrl}` : undefined}
               sx={{
                 width: 116,
                 height: 116,
@@ -779,7 +779,7 @@ export default function ProfilePage() {
                 bgcolor: "#2196f3",
               }}
             >
-              {!user.profileImageUrl && (user.firstName?.charAt(0) || "U")}
+              {!user.profileImageUrl && ((user.name || user.firstName)?.charAt(0) || "U")}
             </Avatar>
           </Paper>
         </Zoom>
@@ -798,7 +798,7 @@ export default function ProfilePage() {
             }}
           >
             <Typography variant="h4" fontWeight={700} sx={{ color: "#333" }}>
-              {user.firstName} {user.lastName}
+              {user.name || user.firstName} {user.lastName}
             </Typography>
             {user.userName && (
               <Typography variant="subtitle1" sx={{ color: "#e91e63", mb: 1 }}>

@@ -9,6 +9,7 @@ import {
   IconButton,
   Stack,
   alpha,
+  Avatar,
 } from "@mui/material";
 import {
   Home as HomeIcon,
@@ -18,6 +19,7 @@ import {
   Notifications,
   People,
   DynamicFeed,
+  KeyboardArrowDown,
 } from "@mui/icons-material";
 
 const navLinks = [
@@ -35,18 +37,18 @@ export default function Navbar() {
 
   return (
     <Paper
-      elevation={6}
+      elevation={0}
       sx={{
         py: 1,
         px: 2,
-        background: "linear-gradient(90deg, #0f172a 0%, #1e1b4b 100%)",
-        borderBottom: "1px solid rgba(255,255,255,0.1)",
+        bgcolor: "rgba(255,255,255,0.9)",
+        backdropFilter: "blur(14px)",
+        borderBottom: "1px solid #dde5f0",
         position: "sticky",
         top: 0,
         zIndex: 1100,
         width: "100%",
         boxSizing: "border-box",
-        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.2)",
       }}
     >
       <Container maxWidth="xl" disableGutters sx={{ px: { xs: 1, sm: 2 } }}>
@@ -55,17 +57,16 @@ export default function Navbar() {
           alignItems="center"
           justifyContent="space-between"
           flexWrap="wrap"
-          gap={2}
+          gap={1}
         >
           {/* Brand */}
-          <Box display="flex" alignItems="center" gap={1.5}>
+          <Box display="flex" alignItems="center" gap={1.5} sx={{ minWidth: "200px" }}>
             <IconButton
               onClick={() => navigate("/home")}
-              sx={{ 
-                color: "#00f6ff",
-                background: "rgba(0, 246, 255, 0.1)",
-                backdropFilter: "blur(4px)",
-                "&:hover": { background: "rgba(0, 246, 255, 0.2)" }
+              sx={{
+                color: "#2563eb",
+                bgcolor: alpha("#2563eb", 0.1),
+                "&:hover": { bgcolor: alpha("#2563eb", 0.2) },
               }}
             >
               <DynamicFeed />
@@ -74,11 +75,9 @@ export default function Navbar() {
               variant="h5"
               fontWeight={800}
               sx={{
-                background: "linear-gradient(to right, #00f6ff, #5d9cec)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                color: "#2563eb",
                 cursor: "pointer",
-                letterSpacing: "0.5px"
+                letterSpacing: "0.5px",
               }}
               onClick={() => navigate("/home")}
             >
@@ -87,7 +86,7 @@ export default function Navbar() {
           </Box>
 
           {/* Nav Links */}
-          <Stack direction="row" spacing={1} flexWrap="wrap">
+          <Stack direction="row" spacing={0.5} flexWrap="wrap" justifyContent="center" sx={{ flexGrow: 1 }}>
             {navLinks.map(({ label, icon, path }) => {
               const active = pathname === path;
               return (
@@ -96,24 +95,20 @@ export default function Navbar() {
                   startIcon={icon}
                   onClick={() => navigate(path)}
                   sx={{
-                    color: active ? "#fff" : "rgba(255,255,255,0.6)",
+                    color: active ? "#e91e63" : "#555",
                     fontWeight: active ? 700 : 500,
                     fontSize: "0.85rem",
                     px: { xs: 1.5, md: 2 },
-                    py: 0.8,
-                    borderRadius: "12px",
-                    background: active ? "rgba(255,255,255,0.1)" : "transparent",
-                    border: active ? "1px solid rgba(255,255,255,0.2)" : "1px solid transparent",
-                    boxShadow: active ? "0 4px 12px rgba(0,0,0,0.1)" : "none",
+                    py: 0.75,
+                    borderRadius: "8px",
+                    bgcolor: active ? alpha("#e91e63", 0.1) : "transparent",
+                    border: active ? `1px solid ${alpha("#e91e63", 0.2)}` : "1px solid transparent",
                     "&:hover": {
-                      color: "#fff",
-                      background: "rgba(255,255,255,0.05)",
+                      color: "#e91e63",
+                      bgcolor: alpha("#e91e63", 0.05),
                       transform: "translateY(-1px)",
                     },
-                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                    "& .MuiButton-startIcon": {
-                      color: active ? "#00f6ff" : "inherit",
-                    }
+                    transition: "all 0.2s ease-in-out",
                   }}
                 >
                   {label}
@@ -121,6 +116,41 @@ export default function Navbar() {
               );
             })}
           </Stack>
+
+          {/* Profile Section */}
+          <Box display="flex" alignItems="center" gap={2} sx={{ minWidth: "200px", justifyContent: "flex-end" }}>
+            {/* Vertical Divider */}
+            <Box sx={{ width: "1px", height: "30px", bgcolor: "#dde5f0" }} />
+            
+            <Button
+              endIcon={<KeyboardArrowDown sx={{ color: "#888" }} />}
+              sx={{
+                textTransform: "none",
+                color: "#333",
+                fontWeight: 600,
+                p: 0.5,
+                pr: 1,
+                borderRadius: "24px",
+                "&:hover": { bgcolor: alpha("#000", 0.04) },
+              }}
+            >
+              <Avatar
+                sx={{
+                  width: 32,
+                  height: 32,
+                  bgcolor: "#3b82f6",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  mr: 1,
+                }}
+              >
+                A
+              </Avatar>
+              <Typography variant="body2" fontWeight={600} sx={{ mr: 0.5 }}>
+                Anuradha
+              </Typography>
+            </Button>
+          </Box>
         </Box>
       </Container>
     </Paper>
