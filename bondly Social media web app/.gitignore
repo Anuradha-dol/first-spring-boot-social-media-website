@@ -1,0 +1,20 @@
+# Build output
+target/
+build/
+out/
+
+# Maven wrapper jar is generated/downloaded
+.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA local project state
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
