@@ -24,4 +24,5 @@ public final class AuthResponse {
     private boolean success;  // <-- primitive boolean
     private String message;
     private String token;
+    private UserDto.UserProfileDto user;
 }
