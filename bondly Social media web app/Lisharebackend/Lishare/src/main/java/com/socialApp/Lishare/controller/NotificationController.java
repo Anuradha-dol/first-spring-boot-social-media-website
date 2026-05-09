@@ -1,5 +1,6 @@
 package com.socialApp.Lishare.controller;
 
+import com.socialApp.Lishare.Service.NotificationService;
 import com.socialApp.Lishare.Service.RealtimeService;
 import com.socialApp.Lishare.Service.interfaces.FollowService;
 import com.socialApp.Lishare.dtos.postdTOs.NotificationDTO;
@@ -22,6 +23,7 @@ import java.util.List;
 public class NotificationController {
 
     private final NotificationRepository notificationRepository;
+    private final NotificationService notificationService;
     private final FollowService followService;
     private final RealtimeService realtimeService;
 
@@ -45,6 +47,26 @@ public class NotificationController {
     @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter stream(@AuthenticationPrincipal User currentUser) {
         return realtimeService.subscribeUser(currentUser.getUserId());
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping
+    public ResponseEntity<Void> clearAllNotifications(@AuthenticationPrincipal User currentUser) {
+        notificationService.clearAllUserNotifications(currentUser.getUserId());
+        return ResponseEntity.ok().build();
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteNotification(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable Long id) {
+        notificationRepository.findById(id).ifPresent(notification -> {
+            if (notification.getUser().getUserId().equals(currentUser.getUserId())) {
+                notificationRepository.delete(notification);
+            }
+        });
+        return ResponseEntity.ok().build();
     }
 
     private NotificationDTO toDto(Notification notification, User currentUser) {

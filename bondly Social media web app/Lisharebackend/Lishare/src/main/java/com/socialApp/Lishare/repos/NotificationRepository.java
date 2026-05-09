@@ -12,4 +12,10 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     List<Notification> findByUserUserIdOrderByCreatedAtDesc(Long userId);
 
     List<Notification> findByUserUserIdAndReadFalseOrderByCreatedAtDesc(Long userId);
+
+    @jakarta.transaction.Transactional
+    void deleteByUserUserIdAndActorUserUserIdAndType(Long recipientId, Long actorId, String type);
+
+    @jakarta.transaction.Transactional
+    void deleteByUserUserId(Long userId);
 }

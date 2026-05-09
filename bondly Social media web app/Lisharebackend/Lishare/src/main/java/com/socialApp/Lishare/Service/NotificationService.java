@@ -32,4 +32,12 @@ public class NotificationService {
         );
         return saved;
     }
+
+    public void removeNotification(Long recipientId, Long actorId, String type) {
+        notificationRepository.deleteByUserUserIdAndActorUserUserIdAndType(recipientId, actorId, type);
+    }
+
+    public void clearAllUserNotifications(Long userId) {
+        notificationRepository.deleteByUserUserId(userId);
+    }
 }
