@@ -58,7 +58,7 @@ export default function Signup() {
       if (res.data.success) {
         setMessage({ type: "success", text: res.data.message });
         setTimeout(() => {
-          navigate("/verify");
+          navigate(`/verify?email=${encodeURIComponent(form.email)}`);
         }, 1500);
       } else {
         setMessage({ type: "error", text: res.data.message });

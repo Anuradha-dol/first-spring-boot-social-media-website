@@ -185,9 +185,20 @@ public class AuthServiceimpl implements AuthService {
                 .email(savedUser.getEmail())
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
+                .token(accessToken) // ✅ set 'token' for frontend compatibility
                 .isVerified(Boolean.TRUE)
                 .role(savedUser.getRole()) // pass the Set<Role>
-
+                .user(new UserDto.UserProfileDto(
+                        savedUser.getId(),
+                        savedUser.getFirstname(),
+                        savedUser.getEmail(),
+                        savedUser.getLastName(),
+                        savedUser.getRole(),
+                        savedUser.getPhoneNumber(),
+                        savedUser.getTempEmail(),
+                        null, // profileImageUrl
+                        null  // coverImageUrl
+                ))
                 .success(Boolean.TRUE)
                 .message("Login successful!")
                 .build();

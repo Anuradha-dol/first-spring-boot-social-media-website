@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -50,54 +52,20 @@ public class AuthController {
 
     // ================= VERIFY OTP =================
     @PostMapping("/verify-code")
-    public ResponseEntity<AuthResponse> verifyCode(@Valid @RequestBody UserDto.VerifyCodeDto verifyCodeDto, HttpServletRequest request) {
-
-        // get email from cookie
-        String email = null;
-        if (request.getCookies() != null) {
-            for (Cookie c : request.getCookies()) {
-                if ("userEmail".equals(c.getName())) {
-                    email = c.getValue();
-                    break;
-                }
-            }
-        }
-
-        if (email == null) {
-            return ResponseEntity.badRequest()
-                    .body(AuthResponse.builder()
-                            .message("Email not found. Please start the process again.")
-                            .success(false)
-                            .build());
-        }
-        String verifyCode = verifyCodeDto.verifyCode();
-
-        return ResponseEntity.ok(authService.verifyCode(email, verifyCode));
+    public ResponseEntity<AuthResponse> verifyCode(@Valid @RequestBody UserDto.VerifyCodeDto verifyCodeDto) {
+        return ResponseEntity.ok(authService.verifyCode(verifyCodeDto.email(), verifyCodeDto.verifyCode()));
     }
 
     @PostMapping("/resend-otp")
-    public ResponseEntity<AuthResponse> resendOtp(HttpServletRequest request) {
-
-        // get email from cookie
-        String email = null;
-        if (request.getCookies() != null) {
-            for (Cookie c : request.getCookies()) {
-                if ("userEmail".equals(c.getName())) {
-                    email = c.getValue();
-                    break;
-                }
-            }
-        }
-
+    public ResponseEntity<AuthResponse> resendOtp(@RequestBody Map<String, String> request) {
+        String email = request.get( "email");
         if (email == null) {
             return ResponseEntity.badRequest()
                     .body(AuthResponse.builder()
-                            .message("Email not found. Please start the process again.")
+                            .message("Email is required.")
                             .success(false)
                             .build());
         }
-
-        // call service method with resend limit logic
         return ResponseEntity.ok(authService.resendOtp(email));
     }
 

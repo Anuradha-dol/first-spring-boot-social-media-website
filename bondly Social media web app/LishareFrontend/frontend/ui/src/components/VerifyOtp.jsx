@@ -1,6 +1,6 @@
 // src/components/VerifyOtp.jsx
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Box,
   Container,
@@ -126,6 +126,9 @@ const SuccessIcon = styled(Box)(({ theme }) => ({
 
 export default function VerifyOtp() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const emailFromUrl = searchParams.get("email") || "";
+
   const [otp, setOtp] = useState("");
   const [message, setMessage] = useState({ type: "", text: "" });
   const [loading, setLoading] = useState(false);
@@ -200,7 +203,10 @@ export default function VerifyOtp() {
       setLoading(true);
       const res = await api.post(
         "/auth/verify-code",
-        { verifyCode: otp },
+        { 
+          email: emailFromUrl,
+          verifyCode: otp 
+        },
         { withCredentials: true }
       );
 
@@ -236,7 +242,7 @@ export default function VerifyOtp() {
       setLoading(true);
       const res = await api.post(
         "/auth/resend-otp",
-        {},
+        { email: emailFromUrl },
         { withCredentials: true }
       );
       
