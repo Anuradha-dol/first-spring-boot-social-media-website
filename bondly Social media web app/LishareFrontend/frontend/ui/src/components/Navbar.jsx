@@ -1,4 +1,5 @@
 // src/components/Navbar.jsx
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   Box,
@@ -21,6 +22,7 @@ import {
   DynamicFeed,
   KeyboardArrowDown,
 } from "@mui/icons-material";
+import api from "../api";
 
 const navLinks = [
   { label: "Home",          icon: <HomeIcon />,      path: "/home" },
@@ -34,6 +36,31 @@ const navLinks = [
 export default function Navbar() {
   const navigate  = useNavigate();
   const { pathname } = useLocation();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Try to get from localStorage first for immediate display
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {}
+    }
+
+    // Fetch fresh user data from the backend
+    const fetchUser = async () => {
+      try {
+        const res = await api.get("/user/me", { withCredentials: true });
+        setUser(res.data);
+      } catch (err) {
+        console.error("Failed to fetch user in Navbar", err);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  const displayName = user?.firstName || user?.name || "User";
+  const displayInitial = displayName.charAt(0).toUpperCase();
 
   return (
     <Paper
@@ -144,10 +171,10 @@ export default function Navbar() {
                   mr: 1,
                 }}
               >
-                A
+                {displayInitial}
               </Avatar>
               <Typography variant="body2" fontWeight={600} sx={{ mr: 0.5 }}>
-                Anuradha
+                {displayName}
               </Typography>
             </Button>
           </Box>
