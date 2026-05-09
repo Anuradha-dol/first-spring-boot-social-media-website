@@ -1150,15 +1150,27 @@ export default function ProfilePage() {
                 return (
                   <ListItem key={follower.userId} disableGutters sx={{ py: 1 }}>
                     <ListItemText primary={`${follower.firstName} ${follower.lastName}`} />
-                    {follower.userId !== user?.userId && !isFollowed && (
+                    {follower.userId !== user?.userId && (
                       <Button
                         size="small"
-                        variant="contained"
-                        onClick={() => handleFollow(follower.userId)}
+                        variant={isFollowed ? "outlined" : "contained"}
+                        onClick={() => isFollowed ? handleUnfollow(follower.userId) : handleFollow(follower.userId)}
                         disabled={processingIds.includes(follower.userId)}
-                        sx={{ bgcolor: "#2196f3", "&:hover": { bgcolor: "#1976d2" } }}
+                        sx={{
+                          ...(isFollowed
+                            ? { borderColor: "#dde5f0", color: "#333", bgcolor: "#f1f5f9", "&:hover": { bgcolor: "#e2e8f0", borderColor: "#cbd5e1" } }
+                            : { bgcolor: "#2196f3", color: "#fff", "&:hover": { bgcolor: "#1976d2" } }
+                          ),
+                          minWidth: 90,
+                          textTransform: "none",
+                          fontWeight: 600,
+                        }}
                       >
-                        {processingIds.includes(follower.userId) ? "..." : "Follow"}
+                        {processingIds.includes(follower.userId)
+                          ? "..."
+                          : isFollowed
+                            ? "Following"
+                            : "Follow Back"}
                       </Button>
                     )}
                   </ListItem>
@@ -1194,12 +1206,16 @@ export default function ProfilePage() {
                   <Button
                     size="small"
                     variant="outlined"
-                    color="error"
                     onClick={() => handleUnfollow(followedUser.userId)}
                     disabled={processingIds.includes(followedUser.userId)}
-                    sx={{ borderColor: "#f44336", color: "#f44336" }}
+                    sx={{
+                      borderColor: "#dde5f0", color: "#333", bgcolor: "#f1f5f9", "&:hover": { bgcolor: "#e2e8f0", borderColor: "#cbd5e1" },
+                      minWidth: 90,
+                      textTransform: "none",
+                      fontWeight: 600,
+                    }}
                   >
-                    {processingIds.includes(followedUser.userId) ? "..." : "Unfollow"}
+                    {processingIds.includes(followedUser.userId) ? "..." : "Following"}
                   </Button>
                 </ListItem>
               ))}
