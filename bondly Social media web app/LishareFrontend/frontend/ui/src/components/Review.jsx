@@ -1,6 +1,6 @@
 // src/components/Review.jsx
 import { useEffect, useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import Navbar from "./Navbar";
 import {
   Container,
   Typography,
@@ -27,7 +27,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import CancelIcon from "@mui/icons-material/Cancel";
-import PersonIcon from "@mui/icons-material/Person";
 import HomeIcon from "@mui/icons-material/Home";
 import RateReviewIcon from "@mui/icons-material/RateReview";
 import api from "../api";
@@ -111,48 +110,10 @@ export default function Review() {
       sx={{
         bgcolor: "#f5f7fb",
         minHeight: "100vh",
-        py: { xs: 1.5, sm: 3 },
       }}
     >
-      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 } }}>
-        {/* Header Card with Home Button and Bondly branding */}
-        <Paper
-          elevation={4}
-          sx={{
-            p: { xs: 1.5, sm: 2 },
-            mb: 2,
-            borderRadius: 1,
-            bgcolor: "#fff",
-            border: "1px solid #dde5f0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Avatar sx={{ bgcolor: "#e91e63", width: 48, height: 48 }}>
-              <RateReviewIcon />
-            </Avatar>
-            <Box>
-              <Typography variant="h5" fontWeight="bold" sx={{ color: "#e91e63" }}>
-                My Reviews
-              </Typography>
-              <Typography variant="body2" sx={{ color: "#666" }}>
-                {reviews.length} review{reviews.length !== 1 ? "s" : ""}
-              </Typography>
-            </Box>
-          </Box>
-          <IconButton
-            component={RouterLink}
-            to="/home"
-            sx={{
-              color: "#2196f3",
-              "&:hover": { backgroundColor: alpha("#2196f3", 0.08) },
-            }}
-          >
-            <HomeIcon />
-          </IconButton>
-        </Paper>
+      <Navbar />
+      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 }, py: { xs: 2, sm: 3 } }}>
 
         {/* Error Alert */}
         {error && (

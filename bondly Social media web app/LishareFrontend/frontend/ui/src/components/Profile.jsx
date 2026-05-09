@@ -1,6 +1,7 @@
 // src/components/ProfilePage.jsx
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import {
   Box,
   Container,
@@ -30,7 +31,6 @@ import {
   ListItemText,
 } from "@mui/material";
 import {
-  Home as HomeIcon,
   Phone,
   AlternateEmail,
   PhotoCamera,
@@ -50,7 +50,7 @@ import {
 import { alpha } from "@mui/material/styles";
 import api from "../api";
 
-const backendBaseUrl = "http://localhost:9091";
+const backendBaseUrl = "http://localhost:4041";
 
 // Reaction icon mapping
 const reactionIcons = {
@@ -79,10 +79,7 @@ export default function ProfilePage() {
     userId: null,
   });
 
-   const handleHomeClick = () => {
-    if (user.role === "ROLE_ADMIN") navigate("/dashboard");
-    else navigate("/home");
-  };
+
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [errorProfile, setErrorProfile] = useState("");
 
@@ -745,38 +742,9 @@ export default function ProfilePage() {
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "#f5f7fb", pb: 3 }}>
-      {/* Top Bar */}
-      <Paper
-        elevation={0}
-        sx={{
-          py: 0.75,
-          px: 2,
-          bgcolor: "rgba(255,255,255,0.9)",
-          backdropFilter: "blur(14px)",
-          borderBottom: "1px solid #dde5f0",
-          position: "sticky",
-          top: 0,
-          zIndex: 10,
-        }}
-      >
-       <Container maxWidth="lg">
-  <Box display="flex" alignItems="center" justifyContent="space-between">
-    <Box display="flex" alignItems="center" gap={2}>
-      <IconButton onClick={handleHomeClick}>
-        <HomeIcon />
-      </IconButton>
-      <Typography variant="h6" fontWeight={600} sx={{ color: "#2196f3" }}>
-        Bondly
-      </Typography>
-    </Box>
-            <Typography variant="subtitle1" sx={{ color: "#e91e63", fontWeight: 500 }}>
-              @{user.userName || user.firstName || "user"}
-            </Typography>
-          </Box>
-        </Container>
-      </Paper>
+      <Navbar />
 
-      <Container maxWidth="md" sx={{ px: { xs: 2, sm: 3 } }}>
+      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 } }}>
         {/* Cover & Avatar */}
         <Zoom in timeout={600}>
           <Paper

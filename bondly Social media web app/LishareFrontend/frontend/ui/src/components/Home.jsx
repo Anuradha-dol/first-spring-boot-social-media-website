@@ -1,6 +1,7 @@
 // src/components/Home.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import {
   Box,
   Container,
@@ -40,12 +41,6 @@ import {
   MoodBad,
   MoreHoriz,
   Delete,
-  Person,
-  RateReview,
-  Support,
-  Search,
-  Notifications,
-  People,
   Share,
 } from "@mui/icons-material";
 import { alpha } from "@mui/material/styles";
@@ -645,40 +640,7 @@ export default function Home() {
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "#f5f7fb" }}>
-      {/* Top Bar with Navigation and Bondly */}
-      <Paper
-        elevation={0}
-        sx={{
-          py: 0.75,
-          px: 2,
-          bgcolor: "rgba(255,255,255,0.9)",
-          backdropFilter: "blur(14px)",
-          borderBottom: "1px solid #dde5f0",
-          position: "sticky",
-          top: 0,
-          zIndex: 10,
-        }}
-      >
-        <Container maxWidth="xl">
-          <Box display="flex" alignItems="center" justifyContent="space-between" flexWrap="wrap" gap={1}>
-            <Box display="flex" alignItems="center" gap={2}>
-              <IconButton onClick={() => navigate("/home")} sx={{ color: "#2563eb" }}>
-                <HomeIcon />
-              </IconButton>
-              <Typography variant="h6" fontWeight={700} sx={{ color: "#2563eb" }}>
-                Bondly
-              </Typography>
-            </Box>
-            <Stack direction="row" spacing={0.75} flexWrap="wrap">
-              <Button startIcon={<Person />} onClick={() => navigate("/profile")} sx={{ color: "#e91e63" }}>Profile</Button>
-              <Button startIcon={<RateReview />} onClick={() => navigate("/review")} sx={{ color: "#2196f3" }}>Reviews</Button>
-              <Button startIcon={<Support />} onClick={() => navigate("/supportUser")} sx={{ color: "#2196f3" }}>Support</Button>
-              <Button startIcon={<Notifications />} onClick={() => navigate("/notifications")} sx={{ color: "#2196f3" }}>Notifications</Button>
-              <Button startIcon={<People />} onClick={() => navigate("/friend")} sx={{ color: "#2196f3" }}>Friends</Button>
-            </Stack>
-          </Box>
-        </Container>
-      </Paper>
+      <Navbar />
 
       {/* Three-Column Layout */}
       <Container maxWidth="xl" sx={{ mt: 2, px: { xs: 1.5, sm: 2 } }}>

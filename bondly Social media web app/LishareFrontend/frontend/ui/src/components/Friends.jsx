@@ -1,7 +1,7 @@
 // src/components/Friends.jsx
 import React, { useEffect, useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import api from "../api";
+import Navbar from "./Navbar";
 import {
   Container,
   Paper,
@@ -20,7 +20,6 @@ import {
   Divider,
 } from "@mui/material";
 import {
-  Home as HomeIcon,
   PersonRemove as PersonRemoveIcon,
   Check as CheckIcon,
   Close as CloseIcon,
@@ -119,43 +118,10 @@ const Friends = () => {
       sx={{
         bgcolor: "#f5f7fb",
         minHeight: "100vh",
-        py: { xs: 1.5, sm: 3 },
       }}
     >
-      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 } }}>
-        {/* Header Card with Home Button */}
-        <Paper
-          elevation={4}
-          sx={{
-            p: { xs: 1.5, sm: 2 },
-            mb: 2,
-            borderRadius: 1,
-            bgcolor: "#fff",
-            border: "1px solid #dde5f0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Box>
-            <Typography variant="h5" fontWeight="bold" sx={{ color: "#e91e63" }}>
-              Friends
-            </Typography>
-            <Typography variant="body2" sx={{ color: "#666" }}>
-              Manage your connections
-            </Typography>
-          </Box>
-          <IconButton
-            component={RouterLink}
-            to="/home"
-            sx={{
-              color: "#2196f3",
-              "&:hover": { backgroundColor: alpha("#2196f3", 0.08) },
-            }}
-          >
-            <HomeIcon />
-          </IconButton>
-        </Paper>
+      <Navbar />
+      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 }, py: { xs: 2, sm: 3 } }}>
 
         {/* Tabs and Lists Card */}
         <Paper

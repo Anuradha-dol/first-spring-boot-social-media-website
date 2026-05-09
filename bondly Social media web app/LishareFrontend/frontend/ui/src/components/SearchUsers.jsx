@@ -1,6 +1,6 @@
 // src/components/SearchUsers.jsx
 import { useState, useEffect } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import Navbar from "./Navbar";
 import {
   Box,
   TextField,
@@ -14,7 +14,6 @@ import {
   Alert,
   CircularProgress,
 } from "@mui/material";
-import { Home as HomeIcon } from "@mui/icons-material";
 import { alpha } from "@mui/material/styles";
 import api from "../api";
 import { followUser, unfollowUser, searchUsers, getFollowing } from "../followApi";
@@ -126,47 +125,9 @@ export default function SearchUsers() {
   };
 
   return (
-    <Box
-      sx={{
-        bgcolor: "#f5f7fb",
-        minHeight: "100vh",
-        py: 3,
-      }}
-    >
-      <Box sx={{ maxWidth: 600, margin: "0 auto", px: { xs: 2, sm: 3 } }}>
-        {/* Header Card with Home Button */}
-        <Paper
-          elevation={4}
-          sx={{
-            p: 2,
-            mb: 2,
-            borderRadius: 1,
-            bgcolor: "#fff",
-            border: "1px solid #dde5f0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Box>
-            <Typography variant="h5" fontWeight="bold" sx={{ color: "#e91e63" }}>
-              Search Users
-            </Typography>
-            <Typography variant="body2" sx={{ color: "#666" }}>
-              Find and connect with people
-            </Typography>
-          </Box>
-          <IconButton
-            component={RouterLink}
-            to="/home"
-            sx={{
-              color: "#2196f3",
-              "&:hover": { backgroundColor: alpha("#2196f3", 0.08) },
-            }}
-          >
-            <HomeIcon />
-          </IconButton>
-        </Paper>
+    <Box sx={{ bgcolor: "#f5f7fb", minHeight: "100vh" }}>
+      <Navbar />
+      <Box sx={{ maxWidth: 700, margin: "0 auto", px: { xs: 2, sm: 3 }, py: 3 }}>
 
         {/* Search Input */}
         <Paper

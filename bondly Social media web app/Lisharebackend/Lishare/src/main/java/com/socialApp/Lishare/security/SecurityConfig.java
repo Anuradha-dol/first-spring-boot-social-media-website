@@ -41,7 +41,7 @@ public class SecurityConfig {
                 }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                       .requestMatchers("/auth/**","/forgotpass/**", "/user/**","/api/**","/reviews/**","/support/**","/follow/**","/notifications/**","/posts/**","/comments/**","/shares/**").permitAll()
+                       .requestMatchers("/auth/**","/forgotpass/**", "/user/**","/api/**","/reviews/**","/support/**","/follow/**","/notifications/**","/posts/**","/comments/**","/shares/**", "/uploads/**").permitAll()
 
                        .requestMatchers("/user/**").hasRole("ADMIN")
                        .requestMatchers("/user/**").hasRole("USER")

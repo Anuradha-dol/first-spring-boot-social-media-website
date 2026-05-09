@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import api from "../api";
 import { openLiveStream } from "../live";
+import Navbar from "./Navbar";
 import {
   Alert,
   Avatar,
@@ -20,7 +20,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Home as HomeIcon, NotificationsActive, PersonAdd, FiberManualRecord } from "@mui/icons-material";
+import { NotificationsActive, PersonAdd, FiberManualRecord } from "@mui/icons-material";
 import { alpha } from "@mui/material/styles";
 
 const getInitials = (firstName, lastName) =>
@@ -98,34 +98,9 @@ export default function Notifications() {
   }
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f7fb", py: { xs: 2, md: 3 } }}>
-      <Container maxWidth="lg">
-        <Paper
-          sx={{
-            p: { xs: 2, md: 2.5 },
-            mb: 2,
-            borderRadius: 1,
-            background: "linear-gradient(135deg, #ffffff 0%, #eef6ff 58%, rgba(233,30,99,0.08) 100%)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Stack direction="row" alignItems="center" spacing={1.5}>
-            <Badge badgeContent={unreadCount} color="primary">
-              <Avatar sx={{ bgcolor: "#e91e63", width: 52, height: 52 }}>
-                <NotificationsActive />
-              </Avatar>
-            </Badge>
-            <Box>
-              <Typography variant="h4" sx={{ color: "#e91e63" }}>Notifications</Typography>
-              <Typography color="text.secondary">{notifications.length} live update{notifications.length !== 1 ? "s" : ""}</Typography>
-            </Box>
-          </Stack>
-          <IconButton component={RouterLink} to="/home" sx={{ color: "#2563eb" }}>
-            <HomeIcon />
-          </IconButton>
-        </Paper>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f7fb" }}>
+      <Navbar />
+      <Container maxWidth="lg" sx={{ py: { xs: 2, md: 3 } }}>
 
         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
