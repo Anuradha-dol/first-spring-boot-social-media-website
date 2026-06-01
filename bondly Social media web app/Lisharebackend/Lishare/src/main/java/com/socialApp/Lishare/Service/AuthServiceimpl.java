@@ -189,7 +189,7 @@ public class AuthServiceimpl implements AuthService {
                 .isVerified(Boolean.TRUE)
                 .role(savedUser.getRole()) // pass the Set<Role>
                 .user(new UserDto.UserProfileDto(
-                        savedUser.getId(),
+                        savedUser.getUserId(),
                         savedUser.getFirstname(),
                         savedUser.getEmail(),
                         savedUser.getLastName(),
