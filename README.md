@@ -1,12 +1,20 @@
 # Bondly Social Media Web App
 
+<p align="center">
+  <img src="docs/readme/bondly-landing-page.png" alt="Bondly landing page preview" width="900">
+</p>
+
+<p align="center">
+  <strong>Connect, share, and grow together with a full-stack social media experience.</strong>
+</p>
+
+<p align="center">
+  <a href="docs/readme/bondly-ui-screenshots.pdf">View full UI screenshots PDF</a>
+</p>
+
 Bondly is my individual full-stack social media web application. I built it as a practical project to bring together the main parts of a real social platform: account registration, email OTP verification, login, profile management, posts, reactions, comments, shares, friends, following, notifications, reviews, and support handling.
 
 The project is split into a Spring Boot backend and a React frontend. The backend handles the REST API, authentication, database work, file uploads, email/OTP flows, and real-time updates. The frontend gives the user-facing screens for signing up, logging in, posting, browsing the feed, managing profiles, and using admin/user support pages.
-
-Project overview PDF:
-
-[Bondly_UI_Screenshots.pdf](bondly%20Social%20media%20web%20app/Bondly_UI_Screenshots.pdf)
 
 ## Tech Stack
 
@@ -76,9 +84,12 @@ Project overview PDF:
 ```text
 .
 +-- README.md
++-- docs/
+|   +-- readme/
+|       +-- bondly-landing-page.png
+|       +-- bondly-ui-screenshots.pdf
+|
 +-- bondly Social media web app/
-|   +-- README.md
-|   +-- Bondly_UI_Screenshots.pdf
 |   +-- pom.xml
 |   +-- Lisharebackend/
 |   |   +-- Lishare/
