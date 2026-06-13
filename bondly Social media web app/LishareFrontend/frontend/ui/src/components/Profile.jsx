@@ -191,13 +191,11 @@ export default function ProfilePage() {
       try {
         const sharesRes = await api.get("/shares/my", { withCredentials: true });
         shares = sharesRes.data;
-        console.log("Shares from /shares/my:", shares);
       } catch (err) {
         if (err.response?.status === 403 || err.response?.status === 404) {
           console.warn("/shares/my not available, using /shares/feed with filtering");
           try {
             const feedRes = await api.get("/shares/feed", { withCredentials: true });
-            console.log("Feed response (full):", feedRes.data);
 
             if (user.userId && Array.isArray(feedRes.data)) {
               // Try multiple possible user ID fields
@@ -219,7 +217,6 @@ export default function ProfilePage() {
                 }
                 return false;
               });
-              console.log("Filtered shares (by userId/name):", shares);
             } else {
               shares = [];
             }
@@ -300,7 +297,6 @@ export default function ProfilePage() {
         const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
         return dateB - dateA;
       });
-      console.log("Final feed items:", allItems);
       setFeed(allItems);
     } catch (err) {
       console.error("Failed to load feed", err);
