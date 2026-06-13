@@ -9,7 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="docs/readme/bondly-project-report-and-screenshots.pdf"><strong>Full View Screenshots and Project Report</strong></a>
+  <a href="docs/readme/bondly-project-report.pdf"><strong>Project Report PDF</strong></a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="docs/readme/bondly-ui-screenshots.pdf"><strong>Full UI Screenshots PDF</strong></a>
 </p>
 
 Bondly is my individual full-stack social media web application. I built it as a practical project to bring together the main parts of a real social platform: account registration, email OTP verification, login, profile management, posts, reactions, comments, shares, friends, following, notifications, reviews, and support handling.
@@ -87,7 +89,8 @@ The project is split into a Spring Boot backend and a React frontend. The backen
 +-- docs/
 |   +-- readme/
 |       +-- bondly-landing-page.png
-|       +-- bondly-project-report-and-screenshots.pdf
+|       +-- bondly-project-report.pdf
+|       +-- bondly-ui-screenshots.pdf
 |
 +-- bondly Social media web app/
 |   +-- pom.xml
