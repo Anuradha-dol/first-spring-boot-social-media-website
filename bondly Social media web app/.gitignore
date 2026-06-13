@@ -2,9 +2,29 @@
 target/
 build/
 out/
+dist/
+dist-ssr/
+node_modules/
 
 # Maven wrapper jar is generated/downloaded
 .mvn/wrapper/maven-wrapper.jar
+
+# Local secrets and runtime configuration
+.env
+.env.*
+*.local
+Lisharebackend/Lishare/src/main/resources/application.yaml
+Lisharebackend/Lishare/src/main/resources/application-local.yaml
+!Lisharebackend/Lishare/src/main/resources/application.example.yaml
+
+# Runtime uploads
+uploads/
+Lisharebackend/Lishare/uploads/
+Lisharebackend/Lishare/src/main/resources/uploads/
+
+# Logs
+logs/
+*.log
 
 # IntelliJ IDEA local project state
 .idea/

@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Component
 public class JwtUtils {
 
-    @Value("Y2hhbGxlbmdlVG9Xcml0ZUZ1bGxQcmVkaWN0YWJsZVNlY3JldEtleQ==")
+    @Value("${jwt.secret}")
     private String secretKey;
 
     private static final long ACCESS_EXPIRATION_MS = 60 * 60 * 1000;

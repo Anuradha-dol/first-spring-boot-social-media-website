@@ -1,11 +1,11 @@
 spring:
   application:
-    name: Lishare
+    name: Bondly
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/social_db
-    username: 
-    password:
+    url: jdbc:postgresql://localhost:5432/bondly
+    username: your_database_username
+    password: your_database_password
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -15,8 +15,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username:
-    password:
+    username: your_email@example.com
+    password: your_email_app_password
     properties:
       mail:
         smtp:
@@ -27,9 +27,8 @@ spring:
   servlet:
     multipart:
       enabled: true
-      max-file-size: 5MB
-      max-request-size: 5MB
-
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 file:
   upload-dir: uploads
@@ -38,7 +37,7 @@ server:
   port: 4041
 
 jwt:
-  secret: Y2hhbGxlbmdlVG9Xcml0ZUZ1bGxQcmVkaWN0YWJsZVNlY3JldEtleQ==
+  secret: replace_with_a_long_base64_encoded_secret
 
 cookie:
   secure: false

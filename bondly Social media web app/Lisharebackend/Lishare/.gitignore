@@ -4,6 +4,22 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Local secrets and runtime config ###
+src/main/resources/application.yaml
+src/main/resources/application-local.yaml
+!src/main/resources/application.example.yaml
+.env
+.env.*
+*.local
+
+### Runtime uploads ###
+uploads/
+src/main/resources/uploads/
+
+### Logs ###
+logs/
+*.log
+
 ### STS ###
 .apt_generated
 .classpath
