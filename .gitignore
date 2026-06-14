@@ -1,0 +1,23 @@
+# Root-level editor and OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local secrets and machine-specific config
+.env
+.env.*
+*.local
+
+# Build output and dependencies
+node_modules/
+target/
+build/
+dist/
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.temp
