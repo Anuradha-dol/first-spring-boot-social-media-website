@@ -11,7 +11,7 @@
 <p align="center">
   <a href="docs/readme/bondly-project-report.pdf"><strong>Project Report PDF</strong></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="docs/readme/bondly-ui-screenshots.pdf"><strong>Full UI Screenshots PDF</strong></a>
+  <a href="docs/readme/bondly-ui-walkthrough-SS.pdf"><strong>Full UI Screenshots PDF</strong></a>
 </p>
 
 Bondly is my individual full-stack social media web application. I built it as a practical project to bring together the main parts of a real social platform: account registration, email OTP verification, login, profile management, posts, reactions, comments, shares, friends, following, notifications, reviews, and support handling.
